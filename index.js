@@ -1,12 +1,15 @@
 import express from "express";
-// const requestLogger = require('./middleware/requestLogger');
-import requestLogger from "./middleware/requestLogger.js";
+import logLevels from './middleware/logLevels.js';
+import requestLogger from './middleware/requestLogger.js';
+
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Use request logging middleware
 app.use(requestLogger);
+app.use(logLevels('info'));  // Use 'debug' for more detailed logging
 
 // Define a simple route
 app.get('/', (req, res) => {
